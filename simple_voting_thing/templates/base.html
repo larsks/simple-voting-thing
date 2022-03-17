@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block doc_head %}
+  <title>Simple Voting Thing: {{ page_title }}</title>
+  {% endblock %}
+</head>
+<body>
+  <div id="nav">
+    <ul>
+      <li><a href="/">Vote</a></li>
+      <li><a href="/results">Results</a></li>
+  </div>
+
+  {% block content_head %}
+  <h1>Simple Voting Thing: {{ page_title }}</h1>
+  {% endblock %}
+
+  {% block content %}
+  <p>Content goes here.</p>
+  {% endblock %}
+</body>
+</html>
+
