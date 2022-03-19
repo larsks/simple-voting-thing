@@ -8,8 +8,8 @@ from . import config
 from . import models
 
 app = flask.Flask(__name__)
-app.secret_key = "digWuHyHoshcawfArbyoFracsyegWu"
-models.initdb(path=os.path.join(os.getcwd(), "votes.db"))
+app.secret_key = os.environ["SV_SECRET_KEY"]
+models.initdb(path=os.environ["SV_DATABASE"])
 
 
 def get_session():
@@ -54,8 +54,6 @@ def vote():
         vote = models.Vote(session_id=session, vote_choice=choice)
     else:
         vote.vote_choice = choice
-
-    models.db.commit()
 
     return flask.render_template(
         "vote.html",
