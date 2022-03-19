@@ -1,6 +1,8 @@
 # type: ignore
 
 import datetime
+import os
+
 from pony import orm
 
 db = orm.Database()
@@ -21,6 +23,9 @@ class Vote(db.Entity):
 def initdb(path=None):
     if path is None:
         path = "votes.db"
+
+    if not path.startswith("/"):
+        path = os.path.join(os.getcwd(), path)
 
     db.bind(provider="sqlite", filename=path, create_db=True)
     db.generate_mapping(create_tables=True)
